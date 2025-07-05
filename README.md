@@ -92,7 +92,5 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 💡 Future Improvements
 
-## 💡 Future Improvements
-
 - Deploy to Render / Vercel / Railway
 - Add YouTube preview or search link (optional)
