@@ -1,5 +1,3 @@
-
-
 # 🎶 Spotipy Lyrics Finder
 
 A simple Flask web app that finds a song based on its lyrics using the Spotify API.
@@ -73,7 +71,7 @@ Visit [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
 ```
 spotipy-web/
 ├── app.py
-├── spotify_a.py
+├── utils.py
 ├── templates/
 │   └── index.html
 ├── .env              # (not pushed to GitHub)
