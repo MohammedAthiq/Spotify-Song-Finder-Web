@@ -92,6 +92,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 💡 Future Improvements
 
-- Add YouTube video links
-- Auto-suggestions while typing lyrics
+## 💡 Future Improvements
+
 - Deploy to Render / Vercel / Railway
+- Add YouTube preview or search link (optional)
