@@ -1,0 +1,87 @@
+
+
+:root {
+    --bg-light: #f9f9f9;
+    --bg-dark: #121212;
+    --text-light: #121212;
+    --text-dark: #f9f9f9;
+    --accent: #1DB954;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    text-align: center;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+form input[type="text"] {
+    padding: 0.5rem;
+    width: 60%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #17a44d;
+}
+
+.result {
+    margin-top: 2rem;
+}
+
+.result img {
+    max-width: 300px;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+.preview {
+    margin-top: 1rem;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+@media (max-width: 600px) {
+    form input[type="text"] {
+        width: 80%;
+    }
+}

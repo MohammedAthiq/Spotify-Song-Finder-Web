@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify Song Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style..css') }}">
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Dark Mode</button>
+
+    <h1>🎧 Spotify Song Search</h1>
+    <form method="post">
+        <input type="text" name="song" placeholder="Enter song name or lyrics" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>Result:</h2>
+        <p><strong>Song:</strong> {{ result.name }}</p>
+        <p><strong>Artist:</strong> {{ result.artist }}</p>
+        <p><a href="{{ result.url }}" target="_blank">🔗 Open on Spotify</a></p>
+        
+        {% if result.image %}
+            <img src="{{ result.image }}" alt="Album Art">
+        {% endif %}
+
+        {% if result.preview %}
+            <div class="preview">
+                <p>🎵 Preview:</p>
+                <audio controls>
+                    <source src="{{ result.preview }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
+</body>
+</html>
