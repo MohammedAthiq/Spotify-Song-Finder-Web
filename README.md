@@ -17,11 +17,13 @@ A simple Flask web app that finds a song based on its lyrics using the Spotify A
 
 ## 🛠️ Tech Stack
 
-- Python
-- Flask
-- Requests
-- Spotipy(lyrics-based search)
-- HTML (Jinja2 templating)
+- Python 3
+- Flask (web framework)
+- Requests (HTTP client)
+- python-dotenv (for managing environment variables)
+- Musixmatch API (to identify song from lyrics)
+- Spotify Web API (for track preview, album art, and Spotify link)
+- HTML + Jinja2 (template rendering)
 
 ---
 
@@ -54,6 +56,7 @@ Create a `.env` file and add your API keys:
 ```env
 SPOTIPY_CLIENT_ID=your_client_id
 SPOTIPY_CLIENT_SECRET=your_client_secret
+MUSIXMATCH_API_KEY=your_musixmatch_api_key
 ```
 
 ### 5. Run the app
