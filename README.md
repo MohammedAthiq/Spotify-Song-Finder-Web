@@ -32,8 +32,8 @@ A simple Flask web app that finds a song based on its lyrics using the Spotify A
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/spotipy-web.git
-cd spotipy-web
+git clone https://github.com/MohammedAthiq/Spotify-Song-Finder-Web.git
+cd Spotify-Song-Finder-Web
 ```
 
 ### 2. Create and activate a virtual environment
