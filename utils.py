@@ -44,6 +44,9 @@ def search_song(lyrics):
     musixmatch_data = musixmatch_response.json()
 
     track_list = musixmatch_data.get("message", {}).get("body", {}).get("track_list", [])
+    print("Lyrics Input:", lyrics)
+    print("Musixmatch Track List:", track_list)
+
     if not track_list:
         return {
             "name": "No matching song found for those lyrics",
@@ -51,9 +54,17 @@ def search_song(lyrics):
             "url": "#"
         }
 
-    # Extract track name and artist name from Musixmatch response
-    track_name = track_list[0]["track"]["track_name"]
-    artist_name = track_list[0]["track"]["artist_name"]
+    track = track_list[0].get("track", {})
+    track_name = track.get("track_name")
+    artist_name = track.get("artist_name")
+
+    if not track_name or not artist_name:
+        return {
+            "name": "No matching song found for those lyrics",
+            "artist": "-",
+            "url": "#"
+        }
+
     full_query = f"{track_name} {artist_name}"
 
     # Step 2: Get Spotify access token
