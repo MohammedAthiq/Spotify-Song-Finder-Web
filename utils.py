@@ -30,33 +30,7 @@ def get_access_token():
         return None
 
 def search_song(lyrics):
-    # Step 1: Search song using Musixmatch API
-    musixmatch_url = "https://api.musixmatch.com/ws/1.1/track.search"
-    musixmatch_params = {
-        "apikey": os.getenv("MUSIXMATCH_API_KEY"),
-        "q_lyrics": lyrics,
-        "f_has_lyrics": 1,
-        "s_track_rating": "desc",
-        "page_size": 1
-    }
-
-    musixmatch_response = requests.get(musixmatch_url, params=musixmatch_params)
-    musixmatch_data = musixmatch_response.json()
-
-    track_list = musixmatch_data.get("message", {}).get("body", {}).get("track_list", [])
-    if not track_list:
-        return {
-            "name": "No matching song found for those lyrics",
-            "artist": "-",
-            "url": "#"
-        }
-
-    # Extract track name and artist name from Musixmatch response
-    track_name = track_list[0]["track"]["track_name"]
-    artist_name = track_list[0]["track"]["artist_name"]
-    full_query = f"{track_name} {artist_name}"
-
-    # Step 2: Get Spotify access token
+    # Step 1: Get Spotify access token
     token = get_access_token()
     if not token:
         return {
@@ -65,19 +39,19 @@ def search_song(lyrics):
             "url": "#"
         }
 
-    # Step 3: Search song on Spotify using track name and artist
+    # Step 2: Search song on Spotify using lyrics query
     try:
         headers = {
             "Authorization": f"Bearer {token}"
         }
 
-        spotify_params = {
-            "q": full_query,
+        params = {
+            "q": lyrics,
             "type": "track",
             "limit": 1
         }
 
-        response = requests.get("https://api.spotify.com/v1/search", headers=headers, params=spotify_params)
+        response = requests.get("https://api.spotify.com/v1/search", headers=headers, params=params)
         if response.status_code != 200:
             return {
                 "name": f"Error: {response.status_code}",
@@ -97,7 +71,7 @@ def search_song(lyrics):
 
     except IndexError:
         return {
-            "name": "No song found on Spotify for those lyrics",
+            "name": "No song found with those lyrics",
             "artist": "-",
             "url": "#"
         }
