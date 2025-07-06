@@ -30,6 +30,34 @@ def get_access_token():
         return None
 
 def search_song(lyrics):
+    # Step 1: Search song using Musixmatch API
+    musixmatch_url = "https://api.musixmatch.com/ws/1.1/track.search"
+    params = {
+        "apikey": os.getenv("MUSIXMATCH_API_KEY"),
+        "q_lyrics": lyrics,
+        "f_has_lyrics": 1,
+        "s_track_rating": "desc",
+        "page_size": 1
+    }
+
+    response = requests.get(musixmatch_url, params=params)
+    data = response.json()
+
+    # Check if any track was returned
+    track_list = data.get("message", {}).get("body", {}).get("track_list", [])
+    if not track_list:
+        return {
+            "name": "No matching song found for those lyrics",
+            "artist": "-",
+            "url": "#"
+        }
+
+    # Extract track and artist from Musixmatch response
+    track_name = track_list[0]["track"]["track_name"]
+    artist_name = track_list[0]["track"]["artist_name"]
+    full_query = f"{track_name} {artist_name}"
+
+    # Step 2: Use Spotify API to get full song details
     token = get_access_token()
     if not token:
         return {
@@ -44,7 +72,8 @@ def search_song(lyrics):
         }
 
         params = {
-            "q": lyrics,
+            "q": full_query,
+            "q": full_query,
             "type": "track",
             "limit": 1
         }
