@@ -1,4 +1,4 @@
-# 🎶 Spotipy Lyrics Finder
+# 🎶 TrackByLyrics
 
 A simple Flask web app that finds a song based on its lyrics using the Spotify API.
 
